@@ -1,55 +1,79 @@
 import {
-    Box,
-    Button,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,    
-  } from "@mui/material";
+  Box,
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, useParams, } from "react-router-dom";
 
-const View =()=>{
-    return(
-        <>
-        <Box textAlign="center" p={2}>
+const View = () => {
+  const [student, setStudent] = useState([]);
+  const {id} = useParams();
+  const navigate = useNavigate();
+  
+
+  useEffect(() => {
+    const getStudent = async () => {
+      try {
+        const Student = await axios.get(`http://localhost:3004/students/${id}`);
+        //console.log(Student.data);
+        setStudent(Student.data);
+      } catch (error) {
+        console.log("something went wrong");  
+      }
+    }
+    getStudent();
+  },[id])
+
+  const handleClick =()=>{
+    navigate("/");
+  }
+
+ 
+  return (
+    <>
+      <Box textAlign="center" p={2}>
         <Typography variant="h6">Student List</Typography>
       </Box>
 
-<TableContainer>
+      <TableContainer>
         <Table>
           <TableHead>
             <TableRow style={{ backgroundColor: "#616161" }}>
               <TableCell align="center">ID</TableCell>
               <TableCell align="center">Name</TableCell>
               <TableCell align="center">Email</TableCell>
-              
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell align="center">1 </TableCell>
-              <TableCell align="center">shubham</TableCell>
-              <TableCell align="center">ss4345@gmail.com</TableCell>
+              <TableCell align="center">{id}</TableCell>
+              <TableCell align="center">{student.stuname}</TableCell>
+              <TableCell align="center">{student.email}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
-        
       </TableContainer>
       <Box m={3}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-                //onClick={(e) => onFormSubmit(e)}
-              >
-                Back to Home
-              </Button>
-            </Box>
-        </>
-    );
-}
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          fullWidth
+          onClick={handleClick}
+        >
+          Back to Home
+        </Button>
+      </Box>
+    </>
+  );
+};
 
 export default View;

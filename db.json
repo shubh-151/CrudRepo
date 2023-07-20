@@ -1,7 +1,14 @@
 {
-  "student": [
-      { "id": 1, "stuname": "shubham", "email": "shubham@gmail.com" },
-      { "id": 2, "stuname": "shivam", "email": "shivam@gmail.com" },
-      { "id": 3, "stuname": "shubhin", "email": "shubhin151@gmail.com" }        
-    ]
+  "students": [
+    {
+      "stuname": "Shubham Shukla",
+      "email": "shubhin151@gmail.com",
+      "id": 2
+    },
+    {
+      "stuname": "uygku",
+      "email": "u65f",
+      "id": 4
+    }
+  ]
 }

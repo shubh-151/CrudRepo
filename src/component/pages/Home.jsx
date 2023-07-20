@@ -1,9 +1,34 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-
 import React from "react";
+import axios from "axios";
+import { useState } from "react";
 import List from "../student/List";
 
 const Home = () => {
+  const [status,setStatus]=useState(false);
+  const [student,setStudent]=useState({
+    stuname:"",
+    email:""
+  });
+
+  const onFormSubmit= async (e)=>{
+    e.preventDefault(); 
+    try {
+      await axios.post("http://localhost:3004/students", student); 
+      setStatus(true);     
+    } catch (error) {
+      console.log("something went wrong"); 
+    }
+
+  }
+
+
+  const onTextFieldChange=(e)=>{
+    setStudent({
+      ...student,[e.target.name]:e.target.value
+    })
+    //console.log(student);
+  }
   return (
     <>
       <Box textAlign="center" p={2} mb={2}>
@@ -29,7 +54,7 @@ const Home = () => {
                   fullWidth
                   id="stuname"
                   label="Name"
-                  //onChange={(e) => onTextFieldChange(e)}
+                  onChange={(e) => onTextFieldChange(e)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -41,7 +66,7 @@ const Home = () => {
                   fullWidth
                   id="email"
                   label="Email Address"
-                  //onChange={(e) => onTextFieldChange(e)}
+                  onChange={(e) => onTextFieldChange(e)}
                 />
               </Grid>
             </Grid>
@@ -51,7 +76,7 @@ const Home = () => {
                 variant="contained"
                 color="primary"
                 fullWidth
-                //onClick={(e) => onFormSubmit(e)}
+                onClick={(e) => onFormSubmit(e)}
               >
                 Add
               </Button>
