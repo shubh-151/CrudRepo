@@ -1,5 +1,6 @@
 import {
     Box,
+    Button,
     Table,
     TableBody,
     TableCell,
@@ -20,7 +21,7 @@ const View =()=>{
         <Table>
           <TableHead>
             <TableRow style={{ backgroundColor: "#616161" }}>
-              <TableCell align="center">No</TableCell>
+              <TableCell align="center">ID</TableCell>
               <TableCell align="center">Name</TableCell>
               <TableCell align="center">Email</TableCell>
               
@@ -28,13 +29,25 @@ const View =()=>{
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell align="center"></TableCell>
-              <TableCell align="center"></TableCell>
-              <TableCell align="center"></TableCell>
+              <TableCell align="center">1 </TableCell>
+              <TableCell align="center">shubham</TableCell>
+              <TableCell align="center">ss4345@gmail.com</TableCell>
             </TableRow>
           </TableBody>
         </Table>
+        
       </TableContainer>
+      <Box m={3}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                //onClick={(e) => onFormSubmit(e)}
+              >
+                Back to Home
+              </Button>
+            </Box>
         </>
     );
 }
